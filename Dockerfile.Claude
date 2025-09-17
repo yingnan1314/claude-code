@@ -2,7 +2,8 @@ FROM ubuntu:latest
 
 # First install ca-certificates using default repositories
 RUN apt-get update && \
-    apt-get install -y ca-certificates
+    apt-get install -y ca-certificates && \
+    apt install curl -y
 #    apt-get install -y ca-certificates && \
 #    apt-get clean && \
 #    rm -rf /var/lib/apt/lists/*
@@ -16,13 +17,16 @@ RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|https://mirrors.aliyun.com/ubunt
 
 
 # Update package list and install Node.js and npm
-RUN apt-get update && \
-    apt-get install -y nodejs npm && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
-# Install Claude Code globally
-RUN npm install -g @anthropic-ai/claude-code
+# install nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# set env
+ENV NVM_DIR=/root/.nvm
+# install node
+RUN bash -c "source $NVM_DIR/nvm.sh && \
+    nvm install 22 && nvm use 22 && nvm alias default 22 && \
+    npm install -g npm@latest && \
+    npm install -g @anthropic-ai/claude-code"
 
 # Define environment variables (only BASE_URL, token will be prompted)
 ENV ANTHROPIC_BASE_URL=""

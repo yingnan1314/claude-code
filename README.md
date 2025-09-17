@@ -76,10 +76,10 @@ docker run --rm -it \
 docker compose up -d
 
 # 进入 Moonshot Kimi K2 服务
-docker exec -u root -it claude-code-kimi-1 bash 
+docker exec -u root -it claude-code-kimi bash 
 
 # 或选择进入 SiliconFlow 服务
-docker exec -u root -it claude-code-flow-1 bash 
+docker exec -u root -it claude-code-flow bash 
 
 # 切换到工作目录
 cd your_project
@@ -182,8 +182,8 @@ docker run --rm -it \
 
 | 服务名称 | API 提供商 | 适用场景 | 容器名称 |
 |---------|-----------|---------|----------|
-| **claude-code-kimi-1** | Moonshot Kimi K2 | 中国大陆用户首选 | claude-code-kimi-1 |
-| **claude-code-flow-1** | SiliconFlow | 备选方案/多平台 | claude-code-flow-1 |
+| **claude-code-kimi** | Moonshot Kimi K2 | 中国大陆用户首选 | claude-code-kimi |
+| **claude-code-flow** | SiliconFlow | 备选方案/多平台 | claude-code-flow |
 
 两个服务均已预配置：
 - ✅ 工作目录自动挂载 
