@@ -1,0 +1,41 @@
+FROM ubuntu:latest
+
+# First install ca-certificates using default repositories
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    apt install curl -y
+#    apt-get install -y ca-certificates && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
+
+# Replace Ubuntu repository URLs with mirror
+#RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|https://archive-ubuntu-com.jiasu.yunbiyun.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources && \
+#    sed -i 's|http://security.ubuntu.com/ubuntu/|https://archive-ubuntu-com.jiasu.yunbiyun.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
+
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|https://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources && \
+    sed -i 's|http://security.ubuntu.com/ubuntu/|https://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
+
+
+# Update package list and install Node.js and npm
+
+# install nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# set env
+ENV NVM_DIR=/root/.nvm
+# install node
+RUN bash -c "source $NVM_DIR/nvm.sh && \
+    nvm install 22 && nvm use 22 && nvm alias default 22 && \
+    npm install -g npm@latest && \
+    npm install -g @openai/codex"
+
+# Define environment variables (only BASE_URL, token will be prompted)
+ENV ANTHROPIC_BASE_URL=""
+
+# Copy entrypoint-codex.sh script
+COPY docker-entrypoint-codex.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint-codex.sh
+
+# Set the entrypoint-codex
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint-codex.sh"]
+CMD ["codex"]
+

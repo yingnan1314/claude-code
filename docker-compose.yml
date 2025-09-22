@@ -45,11 +45,30 @@
     environment:
       - ANTHROPIC_BASE_URL=https://api.siliconflow.cn/
       - ANTHROPIC_MODEL=moonshotai/Kimi-K2-Instruct-0905
-      - ANTHROPIC_AUTH_TOKEN=YOUR_SILICONCLOUD_API_KEY
-      - ANTHROPIC_API_KEY=YOUR_SILICONCLOUD_API_KEY
+      - ANTHROPIC_AUTH_TOKEN=YOUR_CLAUDE_API_KEY
+      - ANTHROPIC_API_KEY=YOUR_CLAUDE_API_KEY
     volumes:
       - YOUR_PROJECT_DIR:/workspace:rw
       - ./claude:/root/.config/claude:rw
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+  openai-codex:
+    # image: dust96747/claude-code
+    container_name: openai-codex
+    build:
+      context: .
+      dockerfile: Dockerfile.Codex
+    environment:
+      - OPENAI_BASE_URL=https://agentrouter.org/v1
+      - OPENAI_MODEL=gpt-5
+      - OPENAI_AUTH_TOKEN=YOUR_OPENAI_API_KEY
+      - OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+    volumes:
+      - YOUR_PROJECT_DIR:/workspace:rw
+      - ./codex:/root/.codex:rw
     working_dir: /workspace
     stdin_open: true
     tty: true
