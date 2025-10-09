@@ -2,11 +2,11 @@
 
 [English](README.en.md) | 中文
 
--- 版本更新，增加其他免费平台api-token调用
--- 注册地址：https://anyrouter.top/register?aff=Ilxk
--- 注册地址：https://agentrouter.org/register?aff=WNM6
+> 版本更新，增加其他免费平台api-token调用
+> 注册地址：https://anyrouter.top/register?aff=Ilxk
+> 注册地址：https://agentrouter.org/register?aff=WNM6
 
--- 版本更新，新增 openai codex 
+> 版本更新，新增 openai codex 
 
 ## 🚀 快速开始 - 一键运行
 
