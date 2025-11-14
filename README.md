@@ -4,7 +4,7 @@
 
 > 版本更新，增加其他免费平台api-token调用  
 > 注册地址：https://anyrouter.top/register?aff=Ilxk  
-> 注册地址：https://agentrouter.org/register?aff=WNM6  
+> 注册地址：https://agentrouter.org/register?aff=WNM6  -- 线路很不稳定，优先推荐 anyrouter
 
 > 版本更新，新增 openai codex 
 
